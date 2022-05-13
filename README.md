@@ -1,8 +1,8 @@
 # bikeware
-This repo contains the firmware that runs on biketrics' SoC of choice (currently an ESP32 on Adafruit's Huzzah32). The Espressif IoT Development Framework (ESP-IDF) is used to build/flash/monitor/test the SoC's firmware.
+This repo contains the firmware that runs on biketrics' SoC of choice (currently the ESP32 on Adafruit's Huzzah32). The Espressif IoT Development Framework (ESP-IDF) is used to build/flash/monitor/test the SoC's firmware.
 
 ## Installing ESP-IDF
-Refer to the following documentation for installation instructions: [docs.espressif.com]([docs.espressif.com](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#introduction))
+Refer to the following documentation for installation instructions: [docs.espressif.com](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#introduction)
 
 ## Building
 From within the `biketrics/biketrics` directory, run `idf.py build`
