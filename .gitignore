@@ -1,3 +1,10 @@
+# Ignore the cmake build directory
+build/
+src/build/
+
+# ESP-IDF specific files
+sdkconfig
+
 # Prerequisites
 *.d
 
