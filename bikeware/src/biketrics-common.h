@@ -3,6 +3,7 @@
 
 // Related
 // C standard
+#include "stdlib.h"
 // C++ standard
 // Library
 // Project
@@ -12,12 +13,12 @@
 #define FALSE 0
 
 /// Sensor IDs
-const unsigned int kFrontWheelSpeedId = 0;
-const unsigned int kRearWheelSpeedId  = 1;
+const uint32_t kFrontWheelSpeedId = 0;
+const uint32_t kRearWheelSpeedId  = 1;
 
 /// Pin Assignments
-const unsigned int kFrontWheelSpeedPin = 0;
-const unsigned int kRearWheelSpeedPin  = 0;
+const uint32_t kFrontWheelSpeedPin = 0;
+const uint32_t kRearWheelSpeedPin  = 0;
 
 ///
 ///
