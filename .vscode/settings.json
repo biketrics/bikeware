@@ -1,5 +1,9 @@
 {
-    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "editor.fontSize": 12,
+    "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.tabSize": 2
+    "editor.rulers": [80],
+    "editor.guides.bracketPairs": true,
+    "editor.guides.bracketPairsHorizontal": true,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
 }

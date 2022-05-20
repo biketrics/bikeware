@@ -35,6 +35,8 @@ __Example:__
 idf.py -p /dev/cu.usbserial-01F4D619 monitor
 ```
 
+__NOTE:__ Use `Ctrl + ]` to exit the monitor.
+
 ## Troubleshooting
 - Most of the `idf.py` commands are intended to be run from the project root (not the repo root). Make sure you are running things commands from `biketrics/biketrics`.
 - Are you seeing `<shell>: command not found: idf.py`? If so, you probably just forgot to run `get_idf`. Remember, `get_idf` has to be run in each new terminal session.

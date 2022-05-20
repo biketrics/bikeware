@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "includePath": [
+                "../**",
+                "~/esp/esp-idf/components/**"
+            ],
+            "intelliSenseMode": "linux-gcc-x86",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
