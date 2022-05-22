@@ -17,8 +17,26 @@ const uint32_t kFrontWheelSpeedId = 0;
 const uint32_t kRearWheelSpeedId  = 1;
 
 /// Pin Assignments
-const uint32_t kFrontWheelSpeedPin = 0;
-const uint32_t kRearWheelSpeedPin  = 0;
+///     +-------------+
+/// RST |             |
+/// 3.3 |             |
+/// N/C |             |
+/// GND |             |
+///  26 |             | VBAT
+///  25 |   Adafruit  | EN
+///  34 |   Huzzah32  | VBUS
+///  39 |             | 13
+///  36 |    ESP32    | 12
+///   4 |             | 27
+///   5 |             | 33
+///  18 |             | 15
+///  19 |             | 32
+///  16 |             | 14
+///  17 |             | 22
+///  21 |             | 23
+///     +-------------+
+const uint32_t kFrontWheelSpeedPin = 26;
+const uint32_t kRearWheelSpeedPin  = 27;
 
 ///
 ///

@@ -11,8 +11,8 @@
 const char* logLevelToStr(LogLevel logLevel) {
   switch (logLevel)
   {
-  case FATAL:
-    return kFatalStr;
+  case ERROR:
+    return kErrorStr;
     break;
   case WARNING:
     return kWarningStr;

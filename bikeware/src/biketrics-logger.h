@@ -12,7 +12,7 @@
 ///
 ///
 enum LogLevel {
-  FATAL,
+  ERROR,
   WARNING,
   INFO,
   DEBUG,
@@ -21,7 +21,7 @@ enum LogLevel {
 };
 
 /// Log level strings
-const char* const kFatalStr   = "FATAL";
+const char* const kErrorStr   = "ERROR";
 const char* const kWarningStr = "WARNING";
 const char* const kInfoStr    = "INFO";
 const char* const kDebugStr   = "DEBUG";

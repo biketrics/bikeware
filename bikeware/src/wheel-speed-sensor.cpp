@@ -6,15 +6,15 @@
 // Library
 // Project
 #include "biketrics-common.h"
+#include "pin-to-queue-manager.h"
 #include "biketrics-logger.h"
 
 ///
-const char* WheelSpeedSensor::kClassName_ = "WheelSpeedSensor";
-
 ///
 ///
-///
-WheelSpeedSensor::WheelSpeedSensor(Location location) {
+WheelSpeedSensor::WheelSpeedSensor(Location location)
+    : kClassName_("WheelSpeedSensor"), kQueueSize_(10), 
+      kDataSize_(sizeof(uint32_t)) {
   switch(location) {
     case FRONT:
       pin_ = kFrontWheelSpeedPin;
@@ -23,12 +23,18 @@ WheelSpeedSensor::WheelSpeedSensor(Location location) {
       pin_ = kRearWheelSpeedPin;
       break;
     default:
-      LOG(FATAL, kClassName_, ("[%-6s]:Invalid location provided",
+      LOG(ERROR, kClassName_, ("[%-6s]Invalid location provided\n",
           locationToString(location)));
       return;
   }
-
   location_ = location;
+
+  PinToQueueManager* p2qMan = PinToQueueManager::getInstance();
+  dataQ_ = p2qMan->createQueue(pin_, kQueueSize_, kDataSize_);
+  if(dataQ_ == 0) {
+      LOG(ERROR, kClassName_, ("[%-6s]Unable to create data queue\n",
+          locationToString(location)));
+  }
 }
 
 ///
@@ -42,5 +48,6 @@ WheelSpeedSensor::~WheelSpeedSensor() {
 ///
 ///
 void WheelSpeedSensor::task(void* arg) {
-
+  for(;;) {
+  }
 }
