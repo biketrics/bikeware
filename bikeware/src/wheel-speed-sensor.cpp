@@ -23,7 +23,7 @@ WheelSpeedSensor::WheelSpeedSensor(Location location)
       pin_ = kRearWheelSpeedPin;
       break;
     default:
-      LOG(ERROR, kClassName_, ("[%-6s]Invalid location provided\n",
+      LOGE(kClassName_, ("[%-6s]Invalid location provided\n",
           locationToString(location)));
       return;
   }
@@ -32,7 +32,7 @@ WheelSpeedSensor::WheelSpeedSensor(Location location)
   PinToQueueManager* p2qMan = PinToQueueManager::getInstance();
   dataQ_ = p2qMan->createQueue(pin_, kQueueSize_, kDataSize_);
   if(dataQ_ == 0) {
-      LOG(ERROR, kClassName_, ("[%-6s]Unable to create data queue\n",
+      LOGE(kClassName_, ("[%-6s]Unable to create data queue\n",
           locationToString(location)));
   }
 }

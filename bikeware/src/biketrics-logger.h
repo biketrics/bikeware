@@ -8,6 +8,15 @@
 // Project
 #include "biketrics-common.h"
 
+/// Enable/disable printing and/or logging at each log level
+#define NO_PRINTING              FALSE
+#define NO_LOGGING               FALSE
+#define SUPPRESS_ERROR_LOGGING   FALSE
+#define SUPPRESS_WARNING_LOGGING FALSE
+#define SUPPRESS_INFO_LOGGING    FALSE
+#define SUPPRESS_DEBUG_LOGGING   FALSE
+#define SUPPRESS_VERBOSE_LOGGING FALSE
+
 ///
 ///
 ///
@@ -38,14 +47,34 @@ const char* logLevelToStr(LogLevel logLevel);
 #define LOG(level, class, x) \
     printf("[%-7s][%s]", logLevelToStr(level), class); printf x; fflush(stdout)
 
-/// Enable/disable print statements
-#define NO_PRINTING FALSE
-#define NO_LOGGING  FALSE
+/// Enable/disable printing/logging
 #if NO_PRINTING == TRUE
   #define PRINT(x) (void)0
 #endif
 #if NO_LOGGING == TRUE
   #define LOG(level, class, x) (void)0
+#endif
+
+/// Log level macros
+#define LOGE(class, x) LOG(ERROR,   class, x)
+#define LOGW(class, x) LOG(WARNING, class, x)
+#define LOGI(class, x) LOG(INFO,    class, x)
+#define LOGD(class, x) LOG(DEBUG,   class, x)
+#define LOGV(class, x) LOG(VERBOSE, class, x)
+#if SUPPRESS_ERROR_LOGGING TRUE
+  #define PRINT(x) (void)0
+#endif
+#if SUPPRESS_ERROR_LOGGING TRUE
+  #define PRINT(x) (void)0
+#endif
+#if SUPPRESS_ERROR_LOGGING TRUE
+  #define PRINT(x) (void)0
+#endif
+#if SUPPRESS_ERROR_LOGGING TRUE
+  #define PRINT(x) (void)0
+#endif
+#if SUPPRESS_ERROR_LOGGING TRUE
+  #define PRINT(x) (void)0
 #endif
 
 #endif // BIKETRICS_LOGGER_H_
