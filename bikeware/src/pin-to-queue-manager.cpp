@@ -61,7 +61,7 @@ QueueHandle_t PinToQueueManager::getQueueForPin(uint32_t pin) {
 void PinToQueueManager::printMap() {
   PinToQueueMapIt_T it;
   for (it=pinQueueMap.begin(); it != pinQueueMap.end(); ++it) {
-    LOGD(kClassName_, ("pin=%u, q=%d\n", it->first, it->second))
+    LOGD(kClassName_, ("pin=%u, q=%d\n", it->first, (int)it->second));
   }
 }
 

@@ -12,6 +12,18 @@
 #define TRUE  1
 #define FALSE 0
 
+/// Common string constants
+const char* const kNotApplicableStr = "N/A";
+const char* const kUnknownStr       = "UNKNOWN";
+const char* const kTrueStr          = "TRUE";
+const char* const kFalseStr         = "FALSE";
+const char* const kEnableStr        = "ENABLE";
+const char* const kDisableStr       = "DISABLE";
+const char* const kInputStr         = "INPUT";
+const char* const kOutputStr        = "OUTPUT";
+const char* const kMaxStr           = "MAX";
+const char* const kMinStr           = "MIN";
+
 /// Sensor IDs
 const uint32_t kFrontWheelSpeedId = 0;
 const uint32_t kRearWheelSpeedId  = 1;
@@ -52,7 +64,6 @@ enum Location {
 const char* const kFrontStr = "FRONT";
 const char* const kCenterStr = "CENTER";
 const char* const kRearStr = "REAR";
-const char* const kNotApplicableStr = "N/A";
 
 ///
 ///

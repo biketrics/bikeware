@@ -35,7 +35,6 @@ const char* const kWarningStr = "WARNING";
 const char* const kInfoStr    = "INFO";
 const char* const kDebugStr   = "DEBUG";
 const char* const kVerboseStr = "VERBOSE";
-const char* const kUnknownStr = "UNKNOWN";
 
 ///
 ///
@@ -61,19 +60,19 @@ const char* logLevelToStr(LogLevel logLevel);
 #define LOGI(class, x) LOG(INFO,    class, x)
 #define LOGD(class, x) LOG(DEBUG,   class, x)
 #define LOGV(class, x) LOG(VERBOSE, class, x)
-#if SUPPRESS_ERROR_LOGGING TRUE
+#if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif
-#if SUPPRESS_ERROR_LOGGING TRUE
+#if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif
-#if SUPPRESS_ERROR_LOGGING TRUE
+#if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif
-#if SUPPRESS_ERROR_LOGGING TRUE
+#if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif
-#if SUPPRESS_ERROR_LOGGING TRUE
+#if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif
 
