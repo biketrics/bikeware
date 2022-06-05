@@ -24,6 +24,31 @@ class WheelSpeedSensor {
   ///
   ///
   ~WheelSpeedSensor();
+
+  ///
+  ///
+  ///
+  char* getTaskName();
+
+  ///
+  ///
+  ///
+  Location getLocation();
+
+  ///
+  ///
+  ///
+  uint32_t getGpio();
+
+  ///
+  ///
+  ///
+  QueueHandle_t getQueue();
+
+  ///
+  ///
+  ///
+  uint32_t getMilesPerRotation();
   
  protected:
  private:
@@ -50,7 +75,7 @@ class WheelSpeedSensor {
   /// 
   uint32_t pin_;
   /// Queue where new sensor data is placed.
-  QueueHandle_t dataQ_;
+  QueueHandle_t q_;
   /// 
   uint32_t milesPerRotation_;
 };
