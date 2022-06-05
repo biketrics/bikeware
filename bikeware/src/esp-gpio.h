@@ -5,17 +5,12 @@
 // C standard
 // C++ standard
 // Library
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
 #include "driver/gpio.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/queue.h"
+#include "freertos/task.h"
 // Project
 #include "biketrics-common.h"
-
-///
-///
-///
-static void IRAM_ATTR gpio_isr_handler(void* arg);
 
 /// GPIO mode strings
 const char* const kGpioModeDisable       = kDisableStr;
@@ -40,4 +35,4 @@ const char* const kInterruptMax       = kMaxStr;
 void logGpioConfig(const char* classname, uint32_t pin, 
     gpio_config_t& gpioConfig);
 
-#endif // ESP_GPIO_H_
+#endif  // ESP_GPIO_H_

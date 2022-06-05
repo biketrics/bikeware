@@ -6,6 +6,7 @@
 #include "stdlib.h"
 // C++ standard
 // Library
+#include "driver/gpio.h"
 // Project
 
 /// Define TRUE and FALSE
@@ -35,10 +36,10 @@ const uint32_t kRearWheelSpeedId  = 1;
 /// N/C |             |
 /// GND |             |
 ///  26 |             | VBAT
-///  25 |   Adafruit  | EN
-///  34 |   Huzzah32  | VBUS
-///  39 |             | 13
-///  36 |    ESP32    | 12
+///  25 |             | EN
+///  34 |             | VBUS
+///  39 |  Adafruit   | 13
+///  36 |  Huzzah32   | 12
 ///   4 |             | 27
 ///   5 |             | 33
 ///  18 |             | 15
@@ -47,8 +48,8 @@ const uint32_t kRearWheelSpeedId  = 1;
 ///  17 |             | 22
 ///  21 |             | 23
 ///     +-------------+
-const uint32_t kFrontWheelSpeedPin = 26;
-const uint32_t kRearWheelSpeedPin  = 27;
+const gpio_num_t kFrontWheelSpeedPin = GPIO_NUM_26;
+const gpio_num_t kRearWheelSpeedPin  = GPIO_NUM_27;
 
 ///
 ///
@@ -69,5 +70,9 @@ const char* const kRearStr = "REAR";
 ///
 ///
 const char* locationToString(Location location);
+
+/// Task names
+const char* const kFrontWheelSpeedTaskName = "FrontWheelSpeedTask";
+const char* const kRearWheelSpeedTaskName = "RearWheelSpeedTask";
 
 #endif // BIKETRICS_COMMON_H_

@@ -55,11 +55,15 @@ const char* logLevelToStr(LogLevel logLevel);
 #endif
 
 /// Log level macros
+/// NOTE to use these macros, the x portion must be within parentheses
+/// e.g. LOGE("classname", ("print me"))
 #define LOGE(class, x) LOG(ERROR,   class, x)
 #define LOGW(class, x) LOG(WARNING, class, x)
 #define LOGI(class, x) LOG(INFO,    class, x)
 #define LOGD(class, x) LOG(DEBUG,   class, x)
 #define LOGV(class, x) LOG(VERBOSE, class, x)
+
+/// Log level suppression
 #if SUPPRESS_ERROR_LOGGING == TRUE
   #define PRINT(x) (void)0
 #endif

@@ -18,7 +18,7 @@ class WheelSpeedSensor {
   ///
   ///
   ///
-  WheelSpeedSensor(Location location);
+  WheelSpeedSensor(Location location, uint32_t wheelSize);
   
   ///
   ///
@@ -32,18 +32,27 @@ class WheelSpeedSensor {
   ///
   static void task(void* arg);
 
+  ///
+  ///
+  ///
+  static void IRAM_ATTR wheelSpeedIsr(void* arg);
+
   /// Class name for printing/logging.
   const char* kClassName_;
-  /// Class name for printing/logging.
+  ///
+  char* taskName_;
+  /// 
   const uint32_t kQueueSize_;
-  /// Class name for printing/logging.
+  /// 
   const uint32_t kDataSize_;
   /// Identifies where on the bike the sensor is mounted.
   Location location_;
-  /// Identifies where on the bike the sensor is mounted.
-  unsigned int pin_;
+  /// 
+  uint32_t pin_;
   /// Queue where new sensor data is placed.
   QueueHandle_t dataQ_;
+  /// 
+  uint32_t milesPerRotation_;
 };
 
 #endif // WHEEL_SPEED_SENSOR_H_

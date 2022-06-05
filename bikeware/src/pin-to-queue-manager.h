@@ -16,6 +16,10 @@
 /// sensor queues, so that when an interrupt/event occurs on a partiular pin, 
 /// the corresponding data can be put on the appropriate queue.
 /// NOTE: This class is a singleton!
+/// NOTE: For speed, this class could be re-factored to use a pre-allocated 
+/// array where the pin number serves as the index and the valued stored in the
+/// array is the corresponding queue's address. This was initially 
+/// implemented using std::map to give myself practice using this type.
 class PinToQueueManager {
  public:
   ///

@@ -13,8 +13,8 @@ extern "C" void app_main(void) {
   PRINT(("---------------- biketrics bikeware --------------------\n"));
 
   PinToQueueManager* p2q = PinToQueueManager::getInstance();
-  WheelSpeedSensor* centerWss = new WheelSpeedSensor(CENTER);
-  WheelSpeedSensor* frontWss = new WheelSpeedSensor(FRONT);
-  WheelSpeedSensor* rearWss = new WheelSpeedSensor(REAR);
+  WheelSpeedSensor* centerWss = new WheelSpeedSensor(CENTER, 27.5);
+  WheelSpeedSensor* frontWss = new WheelSpeedSensor(FRONT, 27.5);
+  WheelSpeedSensor* rearWss = new WheelSpeedSensor(REAR, 27.5);
   p2q->printMap();
 }
