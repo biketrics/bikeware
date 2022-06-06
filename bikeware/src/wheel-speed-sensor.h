@@ -73,7 +73,7 @@ class WheelSpeedSensor {
   /// Identifies where on the bike the sensor is mounted.
   Location location_;
   /// 
-  uint32_t pin_;
+  uint32_t GPIO_;
   /// Queue where new sensor data is placed.
   QueueHandle_t q_;
   /// 

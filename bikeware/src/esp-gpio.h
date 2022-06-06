@@ -32,7 +32,7 @@ const char* const kInterruptMax       = kMaxStr;
 ///
 ///
 ///
-void logGpioConfig(const char* classname, uint32_t pin, 
+void logGpioConfig(const char* classname, uint32_t GPIO, 
     gpio_config_t& gpioConfig);
 
 #endif  // ESP_GPIO_H_
