@@ -29,7 +29,7 @@ const char* const kMinStr           = "MIN";
 const uint32_t kFrontWheelSpeedId = 0;
 const uint32_t kRearWheelSpeedId  = 1;
 
-/// Pin Assignments
+/// GPIO Assignments
 ///     +-------------+
 /// RST |             |
 /// 3.3 |             |
@@ -48,8 +48,8 @@ const uint32_t kRearWheelSpeedId  = 1;
 ///  17 |             | 22
 ///  21 |             | 23
 ///     +-------------+
-const gpio_num_t kFrontWheelSpeedPin = GPIO_NUM_26;
-const gpio_num_t kRearWheelSpeedPin  = GPIO_NUM_27;
+const gpio_num_t kFrontWheelSpeedGPIO = GPIO_NUM_26;
+const gpio_num_t kRearWheelSpeedGPIO  = GPIO_NUM_27;
 
 ///
 ///

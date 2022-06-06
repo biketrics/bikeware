@@ -8,7 +8,7 @@
 // Project
 #include "biketrics-common.h"
 #include "biketrics-constants.h"
-#include "pin-to-queue-manager.h"
+#include "GPIO-to-queue-manager.h"
 #include "esp-gpio.h"
 #include "biketrics-logger.h"
 
@@ -17,21 +17,21 @@
 ///
 WheelSpeedSensor::WheelSpeedSensor(Location location, uint32_t wheelDiameter)
     : kClassName_("WheelSpeedSensor"), taskName_(0), kQueueSize_(10), 
-      kDataSize_(sizeof(uint32_t)), location_(NOT_APPLICABLE), pin_(0), 
+      kDataSize_(sizeof(uint32_t)), location_(NOT_APPLICABLE), GPIO_(0), 
       q_(0) {
-  uint64_t pinBitMask = 0;
+  uint64_t GPIOBitMask = 0;
 
-  // Set pin-specific parameters
+  // Set GPIO-specific parameters
   switch(location) {
     case FRONT:
       taskName_ = (char*)kFrontWheelSpeedTaskName;
-      pin_ = kFrontWheelSpeedPin;
-      pinBitMask = 1ULL<<kFrontWheelSpeedPin;
+      GPIO_ = kFrontWheelSpeedGPIO;
+      GPIOBitMask = 1ULL<<kFrontWheelSpeedGPIO;
       break;
     case REAR:
       taskName_ = (char*)kRearWheelSpeedTaskName;
-      pin_ = kRearWheelSpeedPin;
-      pinBitMask = 1ULL<<kRearWheelSpeedPin;
+      GPIO_ = kRearWheelSpeedGPIO;
+      GPIOBitMask = 1ULL<<kRearWheelSpeedGPIO;
       break;
     default:
       LOGE(kClassName_, ("[%-6s]Invalid location provided\n",
@@ -41,23 +41,23 @@ WheelSpeedSensor::WheelSpeedSensor(Location location, uint32_t wheelDiameter)
   location_ = location;
   milesPerRotation_ = (wheelDiameter * M_PI) / kInchesPerMile;
 
-  // Configure the pin
+  // Configure the GPIO
   gpio_config_t gpioConfig = {};
   gpioConfig.intr_type = GPIO_INTR_POSEDGE;
   gpioConfig.mode = GPIO_MODE_INPUT;
-  gpioConfig.pin_bit_mask = pinBitMask;
+  gpioConfig.GPIO_bit_mask = GPIOBitMask;
   gpioConfig.pull_up_en = GPIO_PULLUP_ENABLE;
   gpio_config(&gpioConfig);
-  logGpioConfig(kClassName_, pin_, gpioConfig);
+  logGpioConfig(kClassName_, GPIO_, gpioConfig);
   gpio_install_isr_service(0); // 0 = default ISR allocation
-  gpio_isr_handler_add((gpio_num_t)kFrontWheelSpeedPin, wheelSpeedIsr, 
-      (void*)kFrontWheelSpeedPin);
-  gpio_isr_handler_add(kRearWheelSpeedPin, wheelSpeedIsr, 
-      (void*)kRearWheelSpeedPin);
+  gpio_isr_handler_add((gpio_num_t)kFrontWheelSpeedGPIO, wheelSpeedIsr, 
+      (void*)kFrontWheelSpeedGPIO);
+  gpio_isr_handler_add(kRearWheelSpeedGPIO, wheelSpeedIsr, 
+      (void*)kRearWheelSpeedGPIO);
 
   // Create the queue for the ISR to place the ticks in
-  PinToQueueManager* p2qMan = PinToQueueManager::getInstance();
-  q_ = p2qMan->createQueue(pin_, kQueueSize_, kDataSize_);
+  GPIOToQueueManager* p2qMan = GPIOToQueueManager::getInstance();
+  q_ = p2qMan->createQueue(GPIO_, kQueueSize_, kDataSize_);
   if(q_ == 0) {
       LOGE(kClassName_, ("[%-6s]Unable to create data queue\n",
           locationToString(location_)));
@@ -96,7 +96,7 @@ Location WheelSpeedSensor::getLocation() {
 ///
 ///
 uint32_t WheelSpeedSensor::getGpio() {
-  return pin_;
+  return GPIO_;
 }
 
 ///
@@ -148,13 +148,13 @@ void IRAM_ATTR WheelSpeedSensor::wheelSpeedIsr(void* arg) {
   static TickType_t wheelSpeedTicks = 0;
   wheelSpeedTicks = xTaskGetTickCountFromISR();
 
-  static uint32_t pin = 0;
-  pin = (uint32_t)arg;
+  static uint32_t GPIO = 0;
+  GPIO = (uint32_t)arg;
 
   LOGD("wheelSpeedISR", ("wheelSpeedTicks=%u", wheelSpeedTicks));
 
-  static PinToQueueManager* pinToQueueMan = PinToQueueManager::getInstance();
+  static GPIOToQueueManager* GPIOToQueueMan = GPIOToQueueManager::getInstance();
   static QueueHandle_t q = 0;
-  q = pinToQueueMan->getQueueForPin(pin);
+  q = GPIOToQueueMan->getQueueForGPIO(GPIO);
   xQueueSendFromISR(q, &wheelSpeedTicks, NULL);
 }

@@ -5,13 +5,13 @@
 // Library
 // Project
 #include "biketrics-common.h"
-#include "pin-to-queue-manager.h"
+#include "GPIO-to-queue-manager.h"
 #include "biketrics-logger.h"
 
 ///
 ///
 ///
-void logGpioConfig(const char* classname, uint32_t pin, 
+void logGpioConfig(const char* classname, uint32_t GPIO, 
     gpio_config_t& gpioConfig) {
   char* interrupt = 0;
   char* mode = 0;
@@ -81,6 +81,6 @@ void logGpioConfig(const char* classname, uint32_t pin,
     pulldown = (char*)kFalseStr;
   }
 
-  LOGI(classname, ("[GpioConfig] pin=%u mode=%s interrupt=%s pullup=%s"
-      " pulldown=%s\n", pin, mode, interrupt, pullup, pulldown));
+  LOGI(classname, ("[GpioConfig] GPIO=%u mode=%s interrupt=%s pullup=%s"
+      " pulldown=%s\n", GPIO, mode, interrupt, pullup, pulldown));
 }
